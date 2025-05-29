@@ -4,6 +4,13 @@ import styled from "styled-components";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router";
 
+const errors = {
+  "auth/email-already-in-use":
+    "Email already registered. Try logging in instead.",
+  "auth/weak-password": "Password should be at least 6 characters.",
+  "auth/invalid-email": "Invalid email.",
+};
+
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -19,6 +26,7 @@ const Title = styled.h1`
 
 const Form = styled.form`
   margin-top: 50px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -65,6 +73,7 @@ export function CreateAccount() {
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
     if (isLoading || name === "" || email === "" || password === "") return;
     try {
       setLoading(true);
@@ -73,13 +82,13 @@ export function CreateAccount() {
         email,
         password
       );
-      console.log(credentials.user);
       await updateProfile(credentials.user, {
         displayName: name,
       });
       navigate("/");
     } catch (err) {
-      //setError
+      const displayedErrMsg = errors[err.code] ?? "Unknown Error";
+      setError(displayedErrMsg);
     } finally {
       setLoading(false);
     }
