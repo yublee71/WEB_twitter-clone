@@ -1,56 +1,24 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
-import styled from "styled-components";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
+import {
+  Error,
+  Input,
+  Switcher,
+  Title,
+  Wrapper,
+  Form,
+} from "../components/auth-components";
+import { FirebaseError } from "firebase/app";
 
-const errors = {
+const errors: Record<string, string> = {
   "auth/email-already-in-use":
     "Email already registered. Try logging in instead.",
   "auth/weak-password": "Password should be at least 6 characters.",
   "auth/invalid-email": "Invalid email.",
 };
-
-const Wrapper = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 420px;
-  padding: 50px 0px;
-`;
-
-const Title = styled.h1`
-  font-size: 42px;
-`;
-
-const Form = styled.form`
-  margin-top: 50px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: none;
-  width: 100%;
-  font-size: 16px;
-  &[type="submit"] {
-    cursor: pointer;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-`;
-
-const Error = styled.span`
-  font-weight: 600;
-  color: tomato;
-`;
 
 export function CreateAccount() {
   const navigate = useNavigate();
@@ -87,7 +55,10 @@ export function CreateAccount() {
       });
       navigate("/");
     } catch (err) {
-      const displayedErrMsg = errors[err.code] ?? "Unknown Error";
+      let displayedErrMsg = "Unknown error.";
+      if (err instanceof FirebaseError) {
+        displayedErrMsg = errors[err.code] ?? "Unknown error.";
+      }
       setError(displayedErrMsg);
     } finally {
       setLoading(false);
@@ -127,6 +98,9 @@ export function CreateAccount() {
         />
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
+      <Switcher>
+        Already have an account? Log in <Link to="/login">here</Link>
+      </Switcher>
     </Wrapper>
   );
 }
