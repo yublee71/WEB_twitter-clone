@@ -12,6 +12,7 @@ import {
   Form,
 } from "../components/auth-components";
 import { FirebaseError } from "firebase/app";
+import { GithubButton } from "../components/github-btn";
 
 const errors: Record<string, string> = {
   "auth/email-already-in-use":
@@ -101,6 +102,7 @@ export function CreateAccount() {
       <Switcher>
         Already have an account? Log in <Link to="/login">here</Link>
       </Switcher>
+      <GithubButton />
     </Wrapper>
   );
 }

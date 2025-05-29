@@ -12,6 +12,7 @@ import {
   Form,
 } from "../components/auth-components";
 import { FirebaseError } from "firebase/app";
+import { GithubButton } from "../components/github-btn";
 
 const errors: Record<string, string> = {
   "auth/invalid-credential": "Log in failed. Please try again",
@@ -78,6 +79,7 @@ export function Login() {
       <Switcher>
         Don't have an account? Sign up <Link to="/create-account">here</Link>
       </Switcher>
+      <GithubButton />
     </Wrapper>
   );
 }
