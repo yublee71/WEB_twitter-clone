@@ -104,11 +104,11 @@ export function PostTweetForm() {
         await updateDoc(doc, { photo: url });
         setTweet("");
         setFile(null);
+        setError("");
       }
     } catch (e) {
       console.log(e);
     } finally {
-      setError("");
       setLoading(false);
     }
   };
