@@ -76,7 +76,10 @@ export function PostTweetForm() {
       if (files[0].size > 1024 * 1024) {
         setError("File size cannot be larger than 1Mb.");
         setFile(null);
-      } else setFile(files[0]);
+      } else {
+        setFile(files[0]);
+        setError("");
+      }
     }
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -105,6 +108,7 @@ export function PostTweetForm() {
     } catch (e) {
       console.log(e);
     } finally {
+      setError("");
       setLoading(false);
     }
   };
@@ -131,7 +135,7 @@ export function PostTweetForm() {
         type="submit"
         value={isLoading ? "Posting..." : "Post Tweet"}
       />
-      {error !== "" ? <Error>{error}</Error> : null}
+      <Error>{error}</Error>
     </Form>
   );
 }
