@@ -5,8 +5,8 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
