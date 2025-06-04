@@ -3,19 +3,20 @@ import styled from "styled-components";
 import { auth } from "../firebase";
 
 const Wrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   gap: 50px;
-  grid-template-columns: 1fr 4fr;
-  height: 100px;
-  padding: 50px 0px;
+  height: 100%;
+  padding: 50px 50px;
   width: 100%;
-  max-width: 860px;
 `;
 
 const Menu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50px;
   gap: 20px;
 `;
 
