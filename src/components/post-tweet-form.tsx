@@ -102,10 +102,10 @@ export function PostTweetForm() {
         const uploadResult = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(uploadResult.ref);
         await updateDoc(doc, { photo: url });
-        setTweet("");
-        setFile(null);
-        setError("");
       }
+      setTweet("");
+      setFile(null);
+      setError("");
     } catch (e) {
       console.log(e);
     } finally {
