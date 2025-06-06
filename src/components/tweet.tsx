@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
   gap: 15px;
+  width: 100%;
 `;
 
 const Photo = styled.img`
@@ -31,7 +32,6 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 10px;
@@ -43,6 +43,8 @@ const Content = styled.div`
 
 const Payload = styled.p`
   font-size: 18px;
+  width: 100%;
+  word-wrap: break-word;
 `;
 
 const DeleteButton = styled.button`
