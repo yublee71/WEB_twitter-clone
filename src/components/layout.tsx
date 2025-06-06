@@ -6,9 +6,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 50px;
+  gap: 30px;
   height: 100%;
-  padding: 50px 50px;
+  padding: 50px 30px;
   width: 100%;
 `;
 

@@ -26,8 +26,8 @@ const Wrapper = styled.div`
 `;
 
 const AvatarLabel = styled.label`
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: #1d9bf0;
   cursor: pointer;
@@ -41,10 +41,11 @@ const AvatarLabel = styled.label`
 `;
 
 const AvatarImg = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 102%;
+  height: 102%;
   border-radius: 50%;
   object-fit: cover;
+  overflow-clip-margin: unset;
 `;
 
 const AvatarInput = styled.input`

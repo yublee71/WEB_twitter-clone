@@ -15,10 +15,11 @@ const Wrapper = styled.div`
 const Column = styled.div``;
 
 const Photo = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 15px;
   object-fit: cover;
+  overflow-clip-margin: unset;
 `;
 
 const UserName = styled.span`
