@@ -7,8 +7,8 @@ const Wrapper = styled.div`
   gap: 50px;
   height: 100%;
   overflow-y: auto;
-  flex-grow: 1;
-  max-width: 600px;
+  width: 100%;
+  max-width: 680px;
 `;
 
 export function Home() {
