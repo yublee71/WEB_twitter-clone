@@ -83,6 +83,7 @@ export function PostTweetForm() {
     }
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setError("");
     e.preventDefault();
     const user = auth.currentUser;
     if (!user || isLoading || tweet === "" || tweet.length > 180) return;
@@ -105,9 +106,8 @@ export function PostTweetForm() {
       }
       setTweet("");
       setFile(null);
-      setError("");
     } catch (e) {
-      console.log(e);
+      setError("Something went wrong.");
     } finally {
       setLoading(false);
     }
