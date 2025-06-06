@@ -138,6 +138,7 @@ export function Profile() {
       />
       <Name>{user?.displayName ?? "Anonymous"}</Name>
       <Error>{error}</Error>
+      <h1 style={{ fontWeight: 600 }}>My Posts</h1>
       <Tweets>
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} {...tweet} />

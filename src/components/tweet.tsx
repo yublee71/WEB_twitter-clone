@@ -7,12 +7,12 @@ import { deleteObject, ref } from "firebase/storage";
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 15px;
+  gap: 15px;
 `;
-
-const Column = styled.div``;
 
 const Photo = styled.img`
   width: 150px;
@@ -27,8 +27,21 @@ const UserName = styled.span`
   font-size: 15px;
 `;
 
+const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    p {
+      font-size: 14px;
+    }
+  }
+`;
+
 const Payload = styled.p`
-  margin: 10px 0px;
   font-size: 18px;
 `;
 
@@ -64,18 +77,23 @@ export function Tweet({ userName, photo, tweet, userId, id }: ITweet) {
   };
   return (
     <Wrapper>
-      <Column>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         <UserName>{userName}</UserName>
-        <Payload>{tweet}</Payload>
         {user?.uid === userId ? (
           <DeleteButton onClick={onDelete}>Delete</DeleteButton>
         ) : null}
-      </Column>
-      {photo ? (
-        <Column>
-          <Photo src={photo} />
-        </Column>
-      ) : null}
+      </div>
+      <Content>
+        <Payload>{tweet}</Payload>
+        {photo ? <Photo src={photo} /> : null}
+      </Content>
     </Wrapper>
   );
 }
