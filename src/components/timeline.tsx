@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   collection,
+  getDocs,
   limit,
   onSnapshot,
   orderBy,
@@ -30,6 +31,31 @@ const Wrapper = styled.div`
 
 export function Timeline() {
   const [tweets, setTweets] = useState<ITweet[]>([]);
+  /* non-realtime update */
+  //   const fetchTweets = async () => {
+  //     const tweetsQuery = query(
+  //       collection(db, "tweets"),
+  //       orderBy("createdAt", "desc")
+  //     );
+  //     const spanshot = await getDocs(tweetsQuery);
+  //     const tweets = spanshot.docs.map((doc) => {
+  //       const { tweet, createdAt, userId, userName, photo } = doc.data();
+  //       return {
+  //         tweet,
+  //         createdAt,
+  //         userId,
+  //         userName,
+  //         photo,
+  //         id: doc.id,
+  //       };
+  //     });
+  //     setTweets(tweets);
+  //   };
+  //   useEffect(() => {
+  //     fetchTweets();
+  //   }, []);
+  /*****************/
+  /* realtime update */
   useEffect(() => {
     let unsubscribe: Unsubscribe | null = null;
     const fetchTweets = async () => {
